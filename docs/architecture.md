@@ -1,26 +1,26 @@
-# Architecture
+# Lite Architecture
 
 ## Data Flow
 
 ```text
-Public API
-  -> paginated collector
-  -> local JSON/CSV storage
-  -> cleaning and deduplication
-  -> feature extraction
-  -> sample labeling
-  -> segmented statistics
-  -> Markdown report
+Public JSON API or sample rows
+  -> collector_lite.py
+  -> normalize simple fields
+  -> save CSV
+  -> inspect sample output
 ```
 
-## Engineering Notes
+## What This Lite Version Shows
 
-- Use public API endpoints only for portfolio demonstration.
-- Keep credentials outside source control.
-- Persist raw and normalized data separately.
-- Make report generation reproducible.
-- Keep production trading or private decision logic out of public repositories.
+- How to request a public JSON endpoint.
+- How to normalize simple JSON objects into flat rows.
+- How to save data as CSV.
+- How to keep credentials and private files out of a public resource package.
 
-## Safety Boundary
+## What It Does Not Show
 
-The private project used observe-only flows and explicit safety guards. Public documentation intentionally omits any complete trading rule set or deployable execution logic.
+- No account credentials.
+- No server deployment.
+- No production logs.
+- No private business rules.
+- No complete commercial data platform.

@@ -1,81 +1,63 @@
-# Market Data Automation Portfolio
+# Python Market Data Collector Lite
 
-金融行情数据采集与自动化分析系统的脱敏作品集仓库。
+Python 行情数据采集与清洗脚本 Lite 版。
 
-> This is a sanitized portfolio repository. It demonstrates architecture, data flow, reporting format, and engineering practices without exposing private strategy logic, credentials, account data, or production logs.
+> 这是一个可公开展示/售卖的阉割版源码示例，只保留基础数据采集、字段清洗、CSV/JSON 保存和脱敏样例。它不是完整交易系统，不包含私有策略、实盘逻辑、账号信息、服务器配置或生产日志。
 
-## Overview
+## 适用场景
 
-This project showcases a Python-based data automation workflow for collecting, cleaning, analyzing, and reporting market data.
+- 学习 Python 接口数据采集
+- 快速搭建 REST API 数据落盘脚本
+- 将 JSON 数据整理为 CSV
+- 给接单平台展示数据采集与清洗能力
+- 作为二次开发的最小模板
 
-The original private system includes:
+## Lite 版包含
 
-- REST API historical data collection
-- paginated candle fetching and deduplication
-- JSON/CSV persistence
-- feature extraction
-- sample labeling
-- Markdown report generation
-- observe-only safety flow
-- parameter evaluation records
+- `src/collector_lite.py`：基础 HTTP JSON 采集与本地保存示例
+- `examples/sample_market_rows.csv`：合成样例数据
+- `examples/sanitized_report_sample.md`：脱敏报告样例
+- `docs/architecture.md`：简化数据流说明
+- `docs/programinn-copy.md`：程序员客栈填写文案
 
-This public repository only contains high-level documentation and synthetic examples.
+## Lite 版不包含
 
-## What It Demonstrates
+- API Key、`.env`、服务器/VPS 信息
+- 真实账户、订单、余额、仓位
+- 完整策略源码、入场/出场规则、核心参数
+- 实盘执行、自动下单、风控执行模块
+- 生产环境日志和历史原始数据
 
-- API data collection workflow design
-- robust pagination and timeout handling
-- structured data persistence
-- automated Markdown reports
-- data quality and sample-size awareness
-- portfolio-safe project documentation
+## 使用方式
 
-## Tech Stack
+不传 URL 时运行内置合成样例：
 
-- Python
-- Requests
-- JSON / CSV
-- Markdown reports
-- Shell / PowerShell automation
-- REST API integration
+```bash
+python src/collector_lite.py --out examples/output.csv
+```
 
-## Public Scope
+传入公开 JSON API 时，可保存原始响应摘要：
 
-Included:
+```bash
+python src/collector_lite.py --url "https://example.com/api/data" --out output.csv
+```
 
-- architecture overview
-- sanitized report sample
-- screenshot checklist
-- portfolio copy for client platforms
-
-Not included:
-
-- API keys
-- `.env` files
-- VPS or SSH information
-- production logs
-- account data
-- full strategy source code
-- exact private trading parameters
-
-## Portfolio Summary
-
-Built a Python automation system that collects historical and real-time market data, normalizes local datasets, computes analysis features, and generates Markdown research reports. The private version processed hundreds of thousands of 1-minute market samples and produced segmented summaries by symbol, hour, and feature range.
-
-## Repository Structure
+## 目录结构
 
 ```text
 .
 ├── README.md
+├── src/
+│   └── collector_lite.py
 ├── docs/
 │   ├── architecture.md
 │   ├── programinn-copy.md
 │   └── screenshot-guide.md
 └── examples/
-    ├── sanitized_report_sample.md
-    └── sample_market_rows.csv
+    ├── sample_market_rows.csv
+    └── sanitized_report_sample.md
 ```
 
-## License
+## 说明
 
-MIT License for documentation and synthetic examples only. Private production code and strategy logic are not part of this repository.
+这个仓库适合做作品展示或源码资源示例。如果需要完整业务采集、定时任务、代理池、数据库入库、异常告警、后台页面或部署服务，需要基于实际需求另行开发。
